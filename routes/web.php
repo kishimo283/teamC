@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//ホーム画面表示
+Route::get('/','MakeEventController@index')->name('home');
+//詳細画面表示
+Route::get('/create','MakeEventController@create')->name('create');
