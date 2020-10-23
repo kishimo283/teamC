@@ -17,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/','MakeEventController@index')->name('home');
 //詳細画面表示
 Route::get('/create','MakeEventController@create')->name('create');
+//イベント投稿機能
+Route::post('/store','MakeEventController@store')->name('store');
+//出欠確認画面表示
+Route::get('/attend/{id}','MakeEventController@attend')->name('attend');
