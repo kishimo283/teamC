@@ -6,6 +6,7 @@
     @foreach($events as $event)
             <div class="event">
                 <p>{{ $event->title }}</p>
+                <p>{{ $event->start_date }}</p>
                 <p>{{ $event->start_time }}</p>
             </div>
     @endforeach

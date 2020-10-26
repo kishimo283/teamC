@@ -32,9 +32,9 @@ class MakeEventController extends Controller
      *
      */
     public function store(Request $request) {
-        dd($request->all());
-        Event::create();
-        return redirct(route('home'));
+        $inputs = $request->all();
+        Event::create($inputs);
+        return redirect(route('home'));
     }
 
     /**
