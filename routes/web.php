@@ -19,5 +19,7 @@ Route::get('/','MakeEventController@index')->name('home');
 Route::get('/create','MakeEventController@create')->name('create');
 //イベント投稿機能
 Route::post('/store','MakeEventController@store')->name('store');
+//イベント削除画面
+Route::post('/delete/{id}','MakeEventController@delete')->name('delete');
 //出欠確認画面表示
 Route::get('/attend/{id}','MakeEventController@attend')->name('attend');

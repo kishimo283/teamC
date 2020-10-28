@@ -3,14 +3,24 @@
 @section('title','HOME画面')
 
 @section('content')
-    @foreach($events as $event)
+    <div class="main">
+        @foreach($events as $event)
             <div class="event">
-                <p>{{ $event->title }}</p>
-                <p>{{ $event->start_date }}</p>
-                <p>{{ $event->start_time }}</p>
+                <a href="/attend/{{ $event->id }}">
+                    <ul>
+                        <li>{{ $event->title }}</li>
+                        <li>{{ $event->start_date }}</li>
+                        <li>{{ substr($event->start_time, 0, 5) }}</li>
+                    </ul>
+                    <form method="post" action="{{ route('delete',$event->id) }}">
+                        @csrf
+                        <button type="submit">削除</button>
+                    </form>
+                </a>
             </div>
-    @endforeach
-    <div class="new-event">
-        <p><a href="create">新規作成</a></p>
+        @endforeach
+            <div class="new-event">
+                <p><a href="create">新規作成</a></p>
+            </div>
     </div>
 @endsection

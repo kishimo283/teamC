@@ -4,7 +4,7 @@
 
 @section('content')
 <form method="POST" action="{{ route('store') }}">
-    @csrf
+    @csrf
     <label for="title">イベント名：</label>
     <input id="title" name="title" type="text" class="form-control" value="{{ old('title') }}">
     <br>

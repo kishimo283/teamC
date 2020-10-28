@@ -1,0 +1,17 @@
+.event {
+    background-color: rgb(37, 173, 226);
+    max-width: 150px;
+}
+
+.event :hover{
+    background-color: rgb(88, 189, 230);
+    max-width: 150px;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    color: black;
+}

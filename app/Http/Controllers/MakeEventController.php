@@ -38,6 +38,19 @@ class MakeEventController extends Controller
     }
 
     /**
+     *イベント削除機能
+     *
+     */
+    public function delete($id) {
+        try {
+            event::destroy($id);
+        } catch(\Throwable $e) {
+            abort(500);
+        }
+        return redirect(route('home'));
+    }
+
+    /**
      *出欠確認画面を表示する
      *
      *@param int $id
