@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\Student;
 
 class MakeEventController extends Controller
 {
@@ -43,7 +44,7 @@ class MakeEventController extends Controller
      */
     public function delete($id) {
         try {
-            event::destroy($id);
+            Event::destroy($id);
         } catch(\Throwable $e) {
             abort(500);
         }
@@ -58,11 +59,25 @@ class MakeEventController extends Controller
      */
     public function attend($id) {
         $event = Event::find($id);
+        $students = $event->students()->orderBy('created_at','desc')->get();
 
         if(is_null($event)){
             return redirct(route('home'));
         }
 
-        return view('ShowAttend',['event' => $event]);
+        return view('ShowAttend',[
+            'event' => $event,
+            'students' => $students
+        ]);
+    }
+    /**
+     *出欠登録機能（保存）
+     *
+     *
+     */
+    public function form(Request $request) {
+        $status = $request->all();
+        Student::create($status);
+        return redirect()->back();
     }
 }

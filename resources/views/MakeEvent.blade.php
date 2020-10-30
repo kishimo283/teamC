@@ -14,7 +14,7 @@
                     </ul>
                     <form method="post" action="{{ route('delete',$event->id) }}">
                         @csrf
-                        <button type="submit">削除</button>
+                        <button type="submit" onclick="return confirm('イベントを削除してもよろしいですか')">削除</button>
                     </form>
                 </a>
             </div>
