@@ -80,4 +80,16 @@ class MakeEventController extends Controller
         Student::create($status);
         return redirect()->back();
     }
+    /**
+     *出欠取り消し機能
+     *
+     */
+    public function cancel($id) {
+        try {
+            Student::destroy($id);
+        } catch(\Throwable $e) {
+            abort(500);
+        }
+        return redirect()->back();
+    }
 }

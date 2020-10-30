@@ -22,6 +22,10 @@
     @foreach($students as $student)
         <p>{{ $student->student_name }}</p>
         <p>{{ $student->status }}</p>
+        <form method="post" action="{{ route('cancel',$student->id) }}">
+            @csrf
+            <button type="submit" onclick="return confirm('出欠を取り消してよろしいですか')">取り消し</button>
+        </form>
         <br>
     @endforeach
 </div>

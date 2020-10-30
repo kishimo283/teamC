@@ -25,3 +25,5 @@ Route::post('/delete/{id}','MakeEventController@delete')->name('delete');
 Route::get('/attend/{id}','MakeEventController@attend')->name('attendance');
 //出欠登録機能
 Route::post('/form','MakeEventController@form')->name('form');
+//出欠取り消し機能
+Route::post('/cancel/{id}','MakeEventController@cancel')->name('cancel');
