@@ -3,7 +3,15 @@
 @section('title','HOME画面')
 
 @section('content')
+
     <div class="main">
+        @if(Auth::check())
+            <p>ユーザー名：　{{ $user->name }}</p>
+            <p><a href ="/home">ログアウト</a></p>
+        @else
+            <p>※ログインしていません（<a href="/login">ログイン</a>｜<a href="/register">登録</a>）</p>
+        @endif
+
         @foreach($events as $event)
             <div class="event">
                 <a href="/attend/{{ $event->id }}">
@@ -19,8 +27,8 @@
                 </a>
             </div>
         @endforeach
-            <div class="new-event">
-                <p><a href="create">新規作成</a></p>
-            </div>
+        <div class="new-event">
+            <p><a href="create">新規作成</a></p>
+        </div>
     </div>
 @endsection

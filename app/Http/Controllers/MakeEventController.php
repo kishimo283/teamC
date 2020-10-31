@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\Student;
+use Illuminate\Support\Facades\Auth;
 
 class MakeEventController extends Controller
 {
@@ -14,8 +15,9 @@ class MakeEventController extends Controller
      *@return view
      */
     public function index() {
+        $user = Auth::user();
         $events = Event::all();
-        return view('MakeEvent', ['events' => $events]);
+        return view('MakeEvent', ['events' => $events, 'user' => $user]);
     }
 
     /**
@@ -24,18 +26,23 @@ class MakeEventController extends Controller
      *@return view
      */
     public function create() {
+        $stop = Auth::user();
+        if($stop == null) {
+            return redirect(route('home'));
+        }
         return view('CreateEvent');
     }
 
     /**
-     *イベント作成機能
+     *イベント新規作成機能
      *
      *
      */
     public function store(Request $request) {
+
         $inputs = $request->all();
         Event::create($inputs);
-        return redirect(route('home'));
+        return redirect(route('main'));
     }
 
     /**
@@ -48,7 +55,7 @@ class MakeEventController extends Controller
         } catch(\Throwable $e) {
             abort(500);
         }
-        return redirect(route('home'));
+        return redirect(route('main'));
     }
 
     /**
@@ -58,11 +65,15 @@ class MakeEventController extends Controller
      *@return view
      */
     public function attend($id) {
+        $stop = Auth::user();
+        if($stop == null) {
+            return redirect(route('home'));
+        }
+
         $event = Event::find($id);
         $students = $event->students()->orderBy('created_at','desc')->get();
-
         if(is_null($event)){
-            return redirct(route('home'));
+            return redirct(route('main'));
         }
 
         $absents = $students->count();

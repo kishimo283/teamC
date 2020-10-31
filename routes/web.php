@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 //ホーム画面表示
-Route::get('/','MakeEventController@index')->name('home');
+Route::get('/','MakeEventController@index')->name('main');
 //新規作成画面表示
 Route::get('/create','MakeEventController@create')->name('create');
 //イベント投稿機能
@@ -27,3 +27,7 @@ Route::get('/attend/{id}','MakeEventController@attend')->name('attendance');
 Route::post('/form','MakeEventController@form')->name('form');
 //出欠取り消し機能
 Route::post('/cancel/{id}','MakeEventController@cancel')->name('cancel');
+
+//ログイン機能
+Auth::routes();
+Route::get('/home', 'HomeController@index')->name('home');

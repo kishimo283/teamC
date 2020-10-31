@@ -4,7 +4,7 @@
 
 @section('content')
 
-<p><a href="{{ route('home') }}">Homeへ戻る</a></p>
+<p><a href="{{ route('main') }}">Homeへ戻る</a></p>
 
 <ul>
     <li>{{ $event->title }}</li>
