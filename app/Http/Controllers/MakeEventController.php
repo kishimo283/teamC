@@ -65,9 +65,12 @@ class MakeEventController extends Controller
             return redirct(route('home'));
         }
 
+        $absents = $students->count();
+
         return view('ShowAttend',[
             'event' => $event,
-            'students' => $students
+            'students' => $students,
+            'absents' => $absents
         ]);
     }
     /**
