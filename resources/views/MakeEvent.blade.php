@@ -11,7 +11,9 @@
         @else
             <p>※ログインしていません（<a href="/login">ログイン</a>｜<a href="/register">登録</a>）</p>
         @endif
-
+        <div class="new-event">
+            <p><a href="create">新規作成</a></p>
+        </div>
         @foreach($events as $event)
             <div class="event">
                 <a href="/attend/{{ $event->id }}">
@@ -27,8 +29,5 @@
                 </a>
             </div>
         @endforeach
-        <div class="new-event">
-            <p><a href="create">新規作成</a></p>
-        </div>
     </div>
 @endsection

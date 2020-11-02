@@ -39,7 +39,6 @@ class MakeEventController extends Controller
      *
      */
     public function store(Request $request) {
-
         $inputs = $request->all();
         Event::create($inputs);
         return redirect(route('main'));
@@ -50,6 +49,11 @@ class MakeEventController extends Controller
      *
      */
     public function delete($id) {
+        $stop = Auth::user();
+        if($stop == null) {
+            return redirect(route('home'));
+        }
+        
         try {
             Event::destroy($id);
         } catch(\Throwable $e) {
